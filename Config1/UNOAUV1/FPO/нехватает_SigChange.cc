@@ -1,0 +1,45 @@
+#include <unistd.h>
+#include <cdsface.h>
+#include <cdshead.h>
+#include "globals.h"
+#include "SigChange.h"
+#include "typeBPO.h"
+
+  char *pPI12AG03KNMC;
+  char *pPI12AG05KNMG;
+  char *pPI12AB01TS;
+  char *pPI12AB05TS;
+  char *pPI12AB09TS;
+  char *pPI12AB01DTS;
+  char *pPI12AB05DTS;
+  char *pPI12AB09DTS;
+void Init_P()
+{
+  GET_REF(pPI12AG03KNMC,char,DEF_DI_BY_ID,30);
+  GET_REF(pPI12AG05KNMG,char,DEF_DI_BY_ID,31);
+  GET_REF(pPI12AB01TS,char,DEF_DI_BY_ID,32);
+  GET_REF(pPI12AB05TS,char,DEF_DI_BY_ID,33);
+  GET_REF(pPI12AB09TS,char,DEF_DI_BY_ID,34);
+  GET_REF(pPI12AB01DTS,char,DEF_DO_BY_ID,21);
+  GET_REF(pPI12AB05DTS,char,DEF_DO_BY_ID,22);
+  GET_REF(pPI12AB09DTS,char,DEF_DO_BY_ID,23);
+};
+void Read_Sig()
+{
+  _PI12AG03KNMC=(bool)*pPI12AG03KNMC;
+  _PI12AG05KNMG=(bool)*pPI12AG05KNMG;
+  _PI12AB01TS=(bool)*pPI12AB01TS;
+  _PI12AB05TS=(bool)*pPI12AB05TS;
+  _PI12AB09TS=(bool)*pPI12AB09TS;
+};
+void Write_Sig()
+{
+  *pPI12AG03KNMC=(char)_PI12AG03KNMC;
+  *pPI12AG05KNMG=(char)_PI12AG05KNMG;
+  *pPI12AB01TS=(char)_PI12AB01TS;
+  *pPI12AB05TS=(char)_PI12AB05TS;
+  *pPI12AB09TS=(char)_PI12AB09TS;
+  *pPI12AB01DTS=(char)_PI12AB01DTS;
+  *pPI12AB05DTS=(char)_PI12AB05DTS;
+  *pPI12AB09DTS=(char)_PI12AB09DTS;
+};

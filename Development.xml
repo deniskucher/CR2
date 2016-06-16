@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Development>
+  <Platform>
+    <OS value="1"/>
+  </Platform>
+  <LBDZones>
+    <Zones>LBDZones</Zones>
+  </LBDZones>
+  <Projects>
+    <Project name="Library_SNEVB"/>
+    <Project name="SHU903"/>
+  </Projects>
+  <SignalDBs>
+    <SignalDB name="DB_RSWS004"/>
+    <SignalDB name="DB_RSWS003"/>
+    <SignalDB name="DB_UNOAUN1"/>
+    <SignalDB name="DB_UNODUN1"/>
+    <SignalDB name="DB_UNOAUN2"/>
+    <SignalDB name="DB_UNODUN2"/>
+    <SignalDB name="DB_MK_KRU"/>
+    <SignalDB name="DB_MK903"/>
+    <SignalDB name="DB_UNOAUV1"/>
+    <SignalDB name="DB_UNODUV1"/>
+    <SignalDB name="DB_UNOAUV2"/>
+    <SignalDB name="DB_UNODUV2"/>
+    <SignalDB name="DB_DVV_004_1"/>
+    <SignalDB name="DB_PAVS_112_54_1"/>
+    <SignalDB name="DB_MK_BMV121"/>
+    <SignalDB name="DB_KDS_3"/>
+    <SignalDB name="DB_MK_BMV221"/>
+    <SignalDB name="DB_KDS_6"/>
+    <SignalDB name="DB_VDS_3"/>
+    <SignalDB name="DB_VDS_4"/>
+    <SignalDB name="DB_BUM_11"/>
+    <SignalDB name="DB_BUM_4"/>
+    <SignalDB name="DB_MR_025_1"/>
+    <SignalDB name="DB_MR_025_2"/>
+    <SignalDB name="DB_MR_025_3"/>
+    <SignalDB name="DB_MK_BMV111"/>
+    <SignalDB name="DB_VDS_1"/>
+    <SignalDB name="DB_KDS_1"/>
+    <SignalDB name="DB_MK_BMV131"/>
+    <SignalDB name="DB_KDS_2"/>
+    <SignalDB name="DB_MK_BMV211"/>
+    <SignalDB name="DB_VDS_2"/>
+    <SignalDB name="DB_KDS_4"/>
+    <SignalDB name="DB_MK_BMV231"/>
+    <SignalDB name="DB_KDS_5"/>
+    <SignalDB name="DB_BUM_7"/>
+    <SignalDB name="DB_KSK36_1"/>
+    <SignalDB name="DB_VV_034_1"/>
+    <SignalDB name="DB_VV_034_2"/>
+  </SignalDBs>
+  <Passport>
+    <Property name="Станция"/>
+    <Property name="Блок"/>
+    <Property name="Отделение"/>
+    <Property name="Подсистема"/>
+    <Property name="Версия"/>
+    <Property name="Часть"/>
+  </Passport>
+</Development>

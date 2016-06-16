@@ -1,0 +1,480 @@
+
+#include <unistd.h>
+#include <cdsface.h>
+#include <cdshead.h>
+
+#include "globals.h"
+#include "SigChange.h"
+#include "typeBPO.h"
+  char *pM255;
+  char *pM698;
+  char *pM701;
+  char *pM702;
+  char *pM255D;
+  char *pM255R;
+  char *pM698R;
+  char *pM701R;
+  char *pM702R;
+  char *pMXXXD;
+  char *pMXXXR;
+  char *pKSK36PERIODR;
+  char *pKSK36POROGR;
+  char *pKSK36POROGT;
+  char *pM255DV;
+  char *pM255MN;
+  char *pM255MX;
+  char *pM255PMN;
+  char *pM255PMX1;
+  char *pM255PMX2;
+  char *pM255UMN;
+  char *pM255ZZ;
+  char *pM698DV;
+  char *pM698MN;
+  char *pM698MX;
+  char *pM698ZZ;
+  char *pM701DV;
+  char *pM701MN;
+  char *pM701MX;
+  char *pM701ZZ;
+  char *pM702DV;
+  char *pM702MN;
+  char *pM702MX;
+  char *pM702ZZ;
+  char *pMXXX1PR;
+  char *pMXXXAMX;
+  char *pMXXXDEL;
+  char *pMXXXTF;
+  char *pMXXXZZ;
+  char *pRN17OTKLTV;
+  char *pRN17D01B01;
+  char *pRN17D01B02;
+  char *pRN17D01NCU;
+  char *pRN17D02B01;
+  char *pRN17D02B02;
+  char *pRN17D02NCU;
+  char *pRN17D03B01;
+  char *pRN17D03B02;
+  char *pRN17D03NCU;
+  char *pTPN1B02;
+  char *pTPN2B02;
+  char *pTPNOTKL;
+  char *pM255F;
+  char *pM255K1N;
+  char *pM698F;
+  char *pM698K1N;
+  char *pM701F;
+  char *pM701K1N;
+  char *pM702F;
+  char *pM702K1N;
+  char *pMXXXF;
+  char *pP3OTSPPMN;
+  char *pPI12AB01TS;
+  char *pPI12AB05TS;
+  char *pPI12AB09TS;
+  char *pPI21AC01TS;
+  char *pPI21AD03TS;
+  char *pPI21AE05TS;
+  char *pRN17D01A01F;
+  char *pRN17D01A02F;
+  char *pRN17D01AOF;
+  char *pRN17D01ZBO;
+  char *pRN17D01ZBZ;
+  char *pRN17D02A01F;
+  char *pRN17D02A02F;
+  char *pRN17D02AOF;
+  char *pRN17D02ZBO;
+  char *pRN17D02ZBZ;
+  char *pRN17D03A01F;
+  char *pRN17D03A02F;
+  char *pRN17D03AOF;
+  char *pRN17D03ZBO;
+  char *pRN17D03ZBZ;
+  char *pRN21S05ZBZ;
+  char *pRN21S06ZBZ;
+  char *pRQ13S01ZAK;
+  char *pRQ13S01ZBO;
+  char *pM255KRS;
+  char *pM255OKD;
+  char *pM698KRS;
+  char *pM698OKD;
+  char *pM701KRS;
+  char *pM701OKD;
+  char *pM702KRS;
+  char *pM702OKD;
+  char *pMXXXKRS;
+  char *pMXXXOKD;
+  char *pP3OTSPPW;
+  char *pPLPVD7AW;
+  char *pRN17D01RAB;
+  char *pRN17D02RAB;
+  char *pRN17D03RAB;
+  char *pM255SBRN;
+  char *pM698SBRN;
+  char *pM701SBRN;
+  char *pM702SBRN;
+  char *pMXXXSBRN;
+
+  void Init_P()
+ {
+	////// сигналы AI 
+  GET_REF(pM255,char,DEF_AI_BY_ID,0);
+  GET_REF(pM698,char,DEF_AI_BY_ID,1);
+  GET_REF(pM701,char,DEF_AI_BY_ID,2);
+  GET_REF(pM702,char,DEF_AI_BY_ID,3);
+	////// сигналы AO 
+	////// сигналы PFA 
+  GET_REF(pM255D,char,DEF_PFA_BY_ID,0);
+  GET_REF(pM255R,char,DEF_PFA_BY_ID,1);
+  GET_REF(pM698R,char,DEF_PFA_BY_ID,2);
+  GET_REF(pM701R,char,DEF_PFA_BY_ID,3);
+  GET_REF(pM702R,char,DEF_PFA_BY_ID,4);
+  GET_REF(pMXXXD,char,DEF_PFA_BY_ID,5);
+  GET_REF(pMXXXR,char,DEF_PFA_BY_ID,6);
+	////// сигналы KO 
+  GET_REF(pKSK36PERIODR,char,DEF_KO_BY_ID,0);
+  GET_REF(pKSK36POROGR,char,DEF_KO_BY_ID,1);
+  GET_REF(pKSK36POROGT,char,DEF_KO_BY_ID,2);
+  GET_REF(pM255DV,char,DEF_KO_BY_ID,3);
+  GET_REF(pM255MN,char,DEF_KO_BY_ID,4);
+  GET_REF(pM255MX,char,DEF_KO_BY_ID,5);
+  GET_REF(pM255PMN,char,DEF_KO_BY_ID,6);
+  GET_REF(pM255PMX1,char,DEF_KO_BY_ID,7);
+  GET_REF(pM255PMX2,char,DEF_KO_BY_ID,8);
+  GET_REF(pM255UMN,char,DEF_KO_BY_ID,9);
+  GET_REF(pM255ZZ,char,DEF_KO_BY_ID,10);
+  GET_REF(pM698DV,char,DEF_KO_BY_ID,11);
+  GET_REF(pM698MN,char,DEF_KO_BY_ID,12);
+  GET_REF(pM698MX,char,DEF_KO_BY_ID,13);
+  GET_REF(pM698ZZ,char,DEF_KO_BY_ID,14);
+  GET_REF(pM701DV,char,DEF_KO_BY_ID,15);
+  GET_REF(pM701MN,char,DEF_KO_BY_ID,16);
+  GET_REF(pM701MX,char,DEF_KO_BY_ID,17);
+  GET_REF(pM701ZZ,char,DEF_KO_BY_ID,18);
+  GET_REF(pM702DV,char,DEF_KO_BY_ID,19);
+  GET_REF(pM702MN,char,DEF_KO_BY_ID,20);
+  GET_REF(pM702MX,char,DEF_KO_BY_ID,21);
+  GET_REF(pM702ZZ,char,DEF_KO_BY_ID,22);
+  GET_REF(pMXXX1PR,char,DEF_KO_BY_ID,23);
+  GET_REF(pMXXXAMX,char,DEF_KO_BY_ID,24);
+  GET_REF(pMXXXDEL,char,DEF_KO_BY_ID,25);
+  GET_REF(pMXXXTF,char,DEF_KO_BY_ID,26);
+  GET_REF(pMXXXZZ,char,DEF_KO_BY_ID,27);
+  GET_REF(pRN17OTKLTV,char,DEF_KO_BY_ID,28);
+	////// сигналы MRI 
+	////// сигналы MRO 
+	////// сигналы DI 
+  GET_REF(pRN17D01B01,char,DEF_DI_BY_ID,0);
+  GET_REF(pRN17D01B02,char,DEF_DI_BY_ID,1);
+  GET_REF(pRN17D01NCU,char,DEF_DI_BY_ID,2);
+  GET_REF(pRN17D02B01,char,DEF_DI_BY_ID,3);
+  GET_REF(pRN17D02B02,char,DEF_DI_BY_ID,4);
+  GET_REF(pRN17D02NCU,char,DEF_DI_BY_ID,5);
+  GET_REF(pRN17D03B01,char,DEF_DI_BY_ID,6);
+  GET_REF(pRN17D03B02,char,DEF_DI_BY_ID,7);
+  GET_REF(pRN17D03NCU,char,DEF_DI_BY_ID,8);
+  GET_REF(pTPN1B02,char,DEF_DI_BY_ID,9);
+  GET_REF(pTPN2B02,char,DEF_DI_BY_ID,10);
+  GET_REF(pTPNOTKL,char,DEF_DI_BY_ID,11);
+	////// сигналы DO 
+	////// сигналы PFD 
+  GET_REF(pM255F,char,DEF_PFD_BY_ID,0);
+  GET_REF(pM255K1N,char,DEF_PFD_BY_ID,1);
+  GET_REF(pM698F,char,DEF_PFD_BY_ID,2);
+  GET_REF(pM698K1N,char,DEF_PFD_BY_ID,3);
+  GET_REF(pM701F,char,DEF_PFD_BY_ID,4);
+  GET_REF(pM701K1N,char,DEF_PFD_BY_ID,5);
+  GET_REF(pM702F,char,DEF_PFD_BY_ID,6);
+  GET_REF(pM702K1N,char,DEF_PFD_BY_ID,7);
+  GET_REF(pMXXXF,char,DEF_PFD_BY_ID,8);
+  GET_REF(pP3OTSPPMN,char,DEF_PFD_BY_ID,9);
+  GET_REF(pPI12AB01TS,char,DEF_PFD_BY_ID,10);
+  GET_REF(pPI12AB05TS,char,DEF_PFD_BY_ID,11);
+  GET_REF(pPI12AB09TS,char,DEF_PFD_BY_ID,12);
+  GET_REF(pPI21AC01TS,char,DEF_PFD_BY_ID,13);
+  GET_REF(pPI21AD03TS,char,DEF_PFD_BY_ID,14);
+  GET_REF(pPI21AE05TS,char,DEF_PFD_BY_ID,15);
+  GET_REF(pRN17D01A01F,char,DEF_PFD_BY_ID,16);
+  GET_REF(pRN17D01A02F,char,DEF_PFD_BY_ID,17);
+  GET_REF(pRN17D01AOF,char,DEF_PFD_BY_ID,18);
+  GET_REF(pRN17D01ZBO,char,DEF_PFD_BY_ID,19);
+  GET_REF(pRN17D01ZBZ,char,DEF_PFD_BY_ID,20);
+  GET_REF(pRN17D02A01F,char,DEF_PFD_BY_ID,21);
+  GET_REF(pRN17D02A02F,char,DEF_PFD_BY_ID,22);
+  GET_REF(pRN17D02AOF,char,DEF_PFD_BY_ID,23);
+  GET_REF(pRN17D02ZBO,char,DEF_PFD_BY_ID,24);
+  GET_REF(pRN17D02ZBZ,char,DEF_PFD_BY_ID,25);
+  GET_REF(pRN17D03A01F,char,DEF_PFD_BY_ID,26);
+  GET_REF(pRN17D03A02F,char,DEF_PFD_BY_ID,27);
+  GET_REF(pRN17D03AOF,char,DEF_PFD_BY_ID,28);
+  GET_REF(pRN17D03ZBO,char,DEF_PFD_BY_ID,29);
+  GET_REF(pRN17D03ZBZ,char,DEF_PFD_BY_ID,30);
+  GET_REF(pRN21S05ZBZ,char,DEF_PFD_BY_ID,31);
+  GET_REF(pRN21S06ZBZ,char,DEF_PFD_BY_ID,32);
+  GET_REF(pRQ13S01ZAK,char,DEF_PFD_BY_ID,33);
+  GET_REF(pRQ13S01ZBO,char,DEF_PFD_BY_ID,34);
+	////// сигналы KL 
+  GET_REF(pM255KRS,char,DEF_KL_BY_ID,0);
+  GET_REF(pM255OKD,char,DEF_KL_BY_ID,1);
+  GET_REF(pM698KRS,char,DEF_KL_BY_ID,2);
+  GET_REF(pM698OKD,char,DEF_KL_BY_ID,3);
+  GET_REF(pM701KRS,char,DEF_KL_BY_ID,4);
+  GET_REF(pM701OKD,char,DEF_KL_BY_ID,5);
+  GET_REF(pM702KRS,char,DEF_KL_BY_ID,6);
+  GET_REF(pM702OKD,char,DEF_KL_BY_ID,7);
+  GET_REF(pMXXXKRS,char,DEF_KL_BY_ID,8);
+  GET_REF(pMXXXOKD,char,DEF_KL_BY_ID,9);
+  GET_REF(pP3OTSPPW,char,DEF_KL_BY_ID,10);
+  GET_REF(pPLPVD7AW,char,DEF_KL_BY_ID,11);
+  GET_REF(pRN17D01RAB,char,DEF_KL_BY_ID,12);
+  GET_REF(pRN17D02RAB,char,DEF_KL_BY_ID,13);
+  GET_REF(pRN17D03RAB,char,DEF_KL_BY_ID,14);
+	////// сигналы PIN 
+  GET_REF(pM255SBRN,char,DEF_PIN_BY_ID,0);
+  GET_REF(pM698SBRN,char,DEF_PIN_BY_ID,1);
+  GET_REF(pM701SBRN,char,DEF_PIN_BY_ID,2);
+  GET_REF(pM702SBRN,char,DEF_PIN_BY_ID,3);
+  GET_REF(pMXXXSBRN,char,DEF_PIN_BY_ID,4);
+  };
+
+  void Read_Sig()
+  {
+	////// сигналы AI 
+  _M255=(bool)*pM255;
+  _M698=(bool)*pM698;
+  _M701=(bool)*pM701;
+  _M702=(bool)*pM702;
+	////// сигналы AO 
+	////// сигналы PFA 
+  _M255D=(bool)*pM255D;
+  _M255R=(bool)*pM255R;
+  _M698R=(bool)*pM698R;
+  _M701R=(bool)*pM701R;
+  _M702R=(bool)*pM702R;
+  _MXXXD=(bool)*pMXXXD;
+  _MXXXR=(bool)*pMXXXR;
+	////// сигналы KO 
+  _KSK36PERIODR=(bool)*pKSK36PERIODR;
+  _KSK36POROGR=(bool)*pKSK36POROGR;
+  _KSK36POROGT=(bool)*pKSK36POROGT;
+  _M255DV=(bool)*pM255DV;
+  _M255MN=(bool)*pM255MN;
+  _M255MX=(bool)*pM255MX;
+  _M255PMN=(bool)*pM255PMN;
+  _M255PMX1=(bool)*pM255PMX1;
+  _M255PMX2=(bool)*pM255PMX2;
+  _M255UMN=(bool)*pM255UMN;
+  _M255ZZ=(bool)*pM255ZZ;
+  _M698DV=(bool)*pM698DV;
+  _M698MN=(bool)*pM698MN;
+  _M698MX=(bool)*pM698MX;
+  _M698ZZ=(bool)*pM698ZZ;
+  _M701DV=(bool)*pM701DV;
+  _M701MN=(bool)*pM701MN;
+  _M701MX=(bool)*pM701MX;
+  _M701ZZ=(bool)*pM701ZZ;
+  _M702DV=(bool)*pM702DV;
+  _M702MN=(bool)*pM702MN;
+  _M702MX=(bool)*pM702MX;
+  _M702ZZ=(bool)*pM702ZZ;
+  _MXXX1PR=(bool)*pMXXX1PR;
+  _MXXXAMX=(bool)*pMXXXAMX;
+  _MXXXDEL=(bool)*pMXXXDEL;
+  _MXXXTF=(bool)*pMXXXTF;
+  _MXXXZZ=(bool)*pMXXXZZ;
+  _RN17OTKLTV=(bool)*pRN17OTKLTV;
+	////// сигналы MRI 
+	////// сигналы MRO 
+	////// сигналы DI 
+  _RN17D01B01=(bool)*pRN17D01B01;
+  _RN17D01B02=(bool)*pRN17D01B02;
+  _RN17D01NCU=(bool)*pRN17D01NCU;
+  _RN17D02B01=(bool)*pRN17D02B01;
+  _RN17D02B02=(bool)*pRN17D02B02;
+  _RN17D02NCU=(bool)*pRN17D02NCU;
+  _RN17D03B01=(bool)*pRN17D03B01;
+  _RN17D03B02=(bool)*pRN17D03B02;
+  _RN17D03NCU=(bool)*pRN17D03NCU;
+  _TPN1B02=(bool)*pTPN1B02;
+  _TPN2B02=(bool)*pTPN2B02;
+  _TPNOTKL=(bool)*pTPNOTKL;
+	////// сигналы DO 
+	////// сигналы PFD 
+  _M255F=(bool)*pM255F;
+  _M255K1N=(bool)*pM255K1N;
+  _M698F=(bool)*pM698F;
+  _M698K1N=(bool)*pM698K1N;
+  _M701F=(bool)*pM701F;
+  _M701K1N=(bool)*pM701K1N;
+  _M702F=(bool)*pM702F;
+  _M702K1N=(bool)*pM702K1N;
+  _MXXXF=(bool)*pMXXXF;
+  _P3OTSPPMN=(bool)*pP3OTSPPMN;
+  _PI12AB01TS=(bool)*pPI12AB01TS;
+  _PI12AB05TS=(bool)*pPI12AB05TS;
+  _PI12AB09TS=(bool)*pPI12AB09TS;
+  _PI21AC01TS=(bool)*pPI21AC01TS;
+  _PI21AD03TS=(bool)*pPI21AD03TS;
+  _PI21AE05TS=(bool)*pPI21AE05TS;
+  _RN17D01A01F=(bool)*pRN17D01A01F;
+  _RN17D01A02F=(bool)*pRN17D01A02F;
+  _RN17D01AOF=(bool)*pRN17D01AOF;
+  _RN17D01ZBO=(bool)*pRN17D01ZBO;
+  _RN17D01ZBZ=(bool)*pRN17D01ZBZ;
+  _RN17D02A01F=(bool)*pRN17D02A01F;
+  _RN17D02A02F=(bool)*pRN17D02A02F;
+  _RN17D02AOF=(bool)*pRN17D02AOF;
+  _RN17D02ZBO=(bool)*pRN17D02ZBO;
+  _RN17D02ZBZ=(bool)*pRN17D02ZBZ;
+  _RN17D03A01F=(bool)*pRN17D03A01F;
+  _RN17D03A02F=(bool)*pRN17D03A02F;
+  _RN17D03AOF=(bool)*pRN17D03AOF;
+  _RN17D03ZBO=(bool)*pRN17D03ZBO;
+  _RN17D03ZBZ=(bool)*pRN17D03ZBZ;
+  _RN21S05ZBZ=(bool)*pRN21S05ZBZ;
+  _RN21S06ZBZ=(bool)*pRN21S06ZBZ;
+  _RQ13S01ZAK=(bool)*pRQ13S01ZAK;
+  _RQ13S01ZBO=(bool)*pRQ13S01ZBO;
+	////// сигналы KL 
+  _M255KRS=(bool)*pM255KRS;
+  _M255OKD=(bool)*pM255OKD;
+  _M698KRS=(bool)*pM698KRS;
+  _M698OKD=(bool)*pM698OKD;
+  _M701KRS=(bool)*pM701KRS;
+  _M701OKD=(bool)*pM701OKD;
+  _M702KRS=(bool)*pM702KRS;
+  _M702OKD=(bool)*pM702OKD;
+  _MXXXKRS=(bool)*pMXXXKRS;
+  _MXXXOKD=(bool)*pMXXXOKD;
+  _P3OTSPPW=(bool)*pP3OTSPPW;
+  _PLPVD7AW=(bool)*pPLPVD7AW;
+  _RN17D01RAB=(bool)*pRN17D01RAB;
+  _RN17D02RAB=(bool)*pRN17D02RAB;
+  _RN17D03RAB=(bool)*pRN17D03RAB;
+	////// сигналы PIN 
+  _M255SBRN=(bool)*pM255SBRN;
+  _M698SBRN=(bool)*pM698SBRN;
+  _M701SBRN=(bool)*pM701SBRN;
+  _M702SBRN=(bool)*pM702SBRN;
+  _MXXXSBRN=(bool)*pMXXXSBRN;
+  };
+  void Write_Sig()
+  {
+	////// сигналы AI 
+  *pM255=(char)_M255;
+  *pM698=(char)_M698;
+  *pM701=(char)_M701;
+  *pM702=(char)_M702;
+	////// сигналы AO 
+	////// сигналы PFA 
+  *pM255D=(char)_M255D;
+  *pM255R=(char)_M255R;
+  *pM698R=(char)_M698R;
+  *pM701R=(char)_M701R;
+  *pM702R=(char)_M702R;
+  *pMXXXD=(char)_MXXXD;
+  *pMXXXR=(char)_MXXXR;
+	////// сигналы KO 
+  *pKSK36PERIODR=(char)_KSK36PERIODR;
+  *pKSK36POROGR=(char)_KSK36POROGR;
+  *pKSK36POROGT=(char)_KSK36POROGT;
+  *pM255DV=(char)_M255DV;
+  *pM255MN=(char)_M255MN;
+  *pM255MX=(char)_M255MX;
+  *pM255PMN=(char)_M255PMN;
+  *pM255PMX1=(char)_M255PMX1;
+  *pM255PMX2=(char)_M255PMX2;
+  *pM255UMN=(char)_M255UMN;
+  *pM255ZZ=(char)_M255ZZ;
+  *pM698DV=(char)_M698DV;
+  *pM698MN=(char)_M698MN;
+  *pM698MX=(char)_M698MX;
+  *pM698ZZ=(char)_M698ZZ;
+  *pM701DV=(char)_M701DV;
+  *pM701MN=(char)_M701MN;
+  *pM701MX=(char)_M701MX;
+  *pM701ZZ=(char)_M701ZZ;
+  *pM702DV=(char)_M702DV;
+  *pM702MN=(char)_M702MN;
+  *pM702MX=(char)_M702MX;
+  *pM702ZZ=(char)_M702ZZ;
+  *pMXXX1PR=(char)_MXXX1PR;
+  *pMXXXAMX=(char)_MXXXAMX;
+  *pMXXXDEL=(char)_MXXXDEL;
+  *pMXXXTF=(char)_MXXXTF;
+  *pMXXXZZ=(char)_MXXXZZ;
+  *pRN17OTKLTV=(char)_RN17OTKLTV;
+	////// сигналы MRI 
+	////// сигналы MRO 
+	////// сигналы DI 
+  *pRN17D01B01=(char)_RN17D01B01;
+  *pRN17D01B02=(char)_RN17D01B02;
+  *pRN17D01NCU=(char)_RN17D01NCU;
+  *pRN17D02B01=(char)_RN17D02B01;
+  *pRN17D02B02=(char)_RN17D02B02;
+  *pRN17D02NCU=(char)_RN17D02NCU;
+  *pRN17D03B01=(char)_RN17D03B01;
+  *pRN17D03B02=(char)_RN17D03B02;
+  *pRN17D03NCU=(char)_RN17D03NCU;
+  *pTPN1B02=(char)_TPN1B02;
+  *pTPN2B02=(char)_TPN2B02;
+  *pTPNOTKL=(char)_TPNOTKL;
+	////// сигналы DO 
+	////// сигналы PFD 
+  *pM255F=(char)_M255F;
+  *pM255K1N=(char)_M255K1N;
+  *pM698F=(char)_M698F;
+  *pM698K1N=(char)_M698K1N;
+  *pM701F=(char)_M701F;
+  *pM701K1N=(char)_M701K1N;
+  *pM702F=(char)_M702F;
+  *pM702K1N=(char)_M702K1N;
+  *pMXXXF=(char)_MXXXF;
+  *pP3OTSPPMN=(char)_P3OTSPPMN;
+  *pPI12AB01TS=(char)_PI12AB01TS;
+  *pPI12AB05TS=(char)_PI12AB05TS;
+  *pPI12AB09TS=(char)_PI12AB09TS;
+  *pPI21AC01TS=(char)_PI21AC01TS;
+  *pPI21AD03TS=(char)_PI21AD03TS;
+  *pPI21AE05TS=(char)_PI21AE05TS;
+  *pRN17D01A01F=(char)_RN17D01A01F;
+  *pRN17D01A02F=(char)_RN17D01A02F;
+  *pRN17D01AOF=(char)_RN17D01AOF;
+  *pRN17D01ZBO=(char)_RN17D01ZBO;
+  *pRN17D01ZBZ=(char)_RN17D01ZBZ;
+  *pRN17D02A01F=(char)_RN17D02A01F;
+  *pRN17D02A02F=(char)_RN17D02A02F;
+  *pRN17D02AOF=(char)_RN17D02AOF;
+  *pRN17D02ZBO=(char)_RN17D02ZBO;
+  *pRN17D02ZBZ=(char)_RN17D02ZBZ;
+  *pRN17D03A01F=(char)_RN17D03A01F;
+  *pRN17D03A02F=(char)_RN17D03A02F;
+  *pRN17D03AOF=(char)_RN17D03AOF;
+  *pRN17D03ZBO=(char)_RN17D03ZBO;
+  *pRN17D03ZBZ=(char)_RN17D03ZBZ;
+  *pRN21S05ZBZ=(char)_RN21S05ZBZ;
+  *pRN21S06ZBZ=(char)_RN21S06ZBZ;
+  *pRQ13S01ZAK=(char)_RQ13S01ZAK;
+  *pRQ13S01ZBO=(char)_RQ13S01ZBO;
+	////// сигналы KL 
+  *pM255KRS=(char)_M255KRS;
+  *pM255OKD=(char)_M255OKD;
+  *pM698KRS=(char)_M698KRS;
+  *pM698OKD=(char)_M698OKD;
+  *pM701KRS=(char)_M701KRS;
+  *pM701OKD=(char)_M701OKD;
+  *pM702KRS=(char)_M702KRS;
+  *pM702OKD=(char)_M702OKD;
+  *pMXXXKRS=(char)_MXXXKRS;
+  *pMXXXOKD=(char)_MXXXOKD;
+  *pP3OTSPPW=(char)_P3OTSPPW;
+  *pPLPVD7AW=(char)_PLPVD7AW;
+  *pRN17D01RAB=(char)_RN17D01RAB;
+  *pRN17D02RAB=(char)_RN17D02RAB;
+  *pRN17D03RAB=(char)_RN17D03RAB;
+	////// сигналы PIN 
+  *pM255SBRN=(char)_M255SBRN;
+  *pM698SBRN=(char)_M698SBRN;
+  *pM701SBRN=(char)_M701SBRN;
+  *pM702SBRN=(char)_M702SBRN;
+  *pMXXXSBRN=(char)_MXXXSBRN;
+  };
