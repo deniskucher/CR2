@@ -3,8 +3,13 @@
 	////// сигналы аналоговые 
 	////// сигналы КО 
 	////// сигналы дискретные 
+bool _RN17D01NN = false;
 bool _RN17D01SA1 = false;
 bool _RN17D01SA2 = false;
+bool _RN17D01SGMN = false;
+bool _RN17D01SGP = false;
+bool _RN17D01SYMN = false;
+bool _RN17D01SYP = false;
 bool _RN21S05NN = false;
 bool _RN21S05SA1 = false;
 bool _RN21S05SA2 = false;

@@ -40,3 +40,5 @@ while ($sig = ibase_fetch_object($sig_ds))
 ?>
 
 #endif
+<?
+echo "\n";

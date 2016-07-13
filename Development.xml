@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="windows-1251"?>
+<?xml version="1.0" encoding="windows-1251"?>
 <Development>
   <Platform>
     <OS value="1"/>
@@ -50,6 +50,7 @@
     <SignalDB name="DB_KSK36_1"/>
     <SignalDB name="DB_VV_034_1"/>
     <SignalDB name="DB_VV_034_2"/>
+    <SignalDB name="DB_Server"/>
   </SignalDBs>
   <Passport>
     <Property name="Станция"/>

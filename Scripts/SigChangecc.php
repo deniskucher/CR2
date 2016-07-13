@@ -106,27 +106,27 @@ $sig_mro_w =ibase_query($sigdb, $qry);
 
 while ($sig = ibase_fetch_object($sig_ai))
  {
-    echo "  char *p{$sig->SIGNAME};\n";
+    echo "  int *p{$sig->SIGNAME};\n";
 }
 while ($sig = ibase_fetch_object($sig_ao))
  {
-    echo "  char *p{$sig->SIGNAME};\n";
+    echo "  int *p{$sig->SIGNAME};\n";
 }
 while ($sig = ibase_fetch_object($sig_pfa))
  {
-    echo "  char *p{$sig->SIGNAME};\n";
+    echo "  int *p{$sig->SIGNAME};\n";
 }
 while ($sig = ibase_fetch_object($sig_ko))
  {
-    echo "  char *p{$sig->SIGNAME};\n";
+    echo "  int *p{$sig->SIGNAME};\n";
 }
 while ($sig = ibase_fetch_object($sig_mri))
  {
-    echo "  char *p{$sig->SIGNAME};\n";
+    echo "  int *p{$sig->SIGNAME};\n";
 }
 while ($sig = ibase_fetch_object($sig_mro))
  {
-    echo "  char *p{$sig->SIGNAME};\n";
+    echo "  int *p{$sig->SIGNAME};\n";
 }
  while ($sig = ibase_fetch_object($sig_di))
  {
@@ -162,42 +162,42 @@ $n=0;
 echo "	////// сигналы AI \n";
  while ($sig = ibase_fetch_object($sig_ai_p))
   {
-  echo "  GET_REF(p{$sig->SIGNAME},char,DEF_AI_BY_ID,{$n});\n";
+  echo "  GET_REF(p{$sig->SIGNAME},int,DEF_AI_BY_ID,{$n});\n";
   $n++;
   }
   $n=0; 
   echo "	////// сигналы AO \n";
  while ($sig = ibase_fetch_object($sig_ao_p))
   {
-  echo "  GET_REF(p{$sig->SIGNAME},char,DEF_AO_BY_ID,{$n});\n";
+  echo "  GET_REF(p{$sig->SIGNAME},int,DEF_AO_BY_ID,{$n});\n";
   $n++;
   }
   $n=0; 
   echo "	////// сигналы PFA \n";
  while ($sig = ibase_fetch_object($sig_pfa_p))
   {
-  echo "  GET_REF(p{$sig->SIGNAME},char,DEF_PFA_BY_ID,{$n});\n";
+  echo "  GET_REF(p{$sig->SIGNAME},int,DEF_PFA_BY_ID,{$n});\n";
   $n++;
   }
   $n=0; 
   echo "	////// сигналы KO \n";
  while ($sig = ibase_fetch_object($sig_ko_p))
   {
-  echo "  GET_REF(p{$sig->SIGNAME},char,DEF_KO_BY_ID,{$n});\n";
+  echo "  GET_REF(p{$sig->SIGNAME},int,DEF_KO_BY_ID,{$n});\n";
   $n++;
   }
   $n=0; 
   echo "	////// сигналы MRI \n";
  while ($sig = ibase_fetch_object($sig_mri_p))
   {
-  echo "  GET_REF(p{$sig->SIGNAME},char,DEF_MRI_BY_ID,{$n});\n";
+  echo "  GET_REF(p{$sig->SIGNAME},int,DEF_MRI_BY_ID,{$n});\n";
   $n++;
   }
   $n=0; 
   echo "	////// сигналы MRO \n";
  while ($sig = ibase_fetch_object($sig_mro_p))
   {
-  echo "  GET_REF(p{$sig->SIGNAME},char,DEF_MRO_BY_ID,{$n});\n";
+  echo "  GET_REF(p{$sig->SIGNAME},int,DEF_MRO_BY_ID,{$n});\n";
   $n++;
   }
  $n=0; 
@@ -248,32 +248,32 @@ echo "	////// сигналы AI \n";
 echo "	////// сигналы AI \n";
   while ($sig = ibase_fetch_object($sig_ai_r))
     {
-    echo "  _{$sig->SIGNAME}=(bool)*p{$sig->SIGNAME};\n";
+    echo "  _{$sig->SIGNAME}=(short)*p{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы AO \n";
   while ($sig = ibase_fetch_object($sig_ao_r))
     {
-    echo "  _{$sig->SIGNAME}=(bool)*p{$sig->SIGNAME};\n";
+    echo "  _{$sig->SIGNAME}=(short)*p{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы PFA \n";
   while ($sig = ibase_fetch_object($sig_pfa_r))
     {
-    echo "  _{$sig->SIGNAME}=(bool)*p{$sig->SIGNAME};\n";
+    echo "  _{$sig->SIGNAME}=(short)*p{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы KO \n";
   while ($sig = ibase_fetch_object($sig_ko_r))
     {
-    echo "  _{$sig->SIGNAME}=(bool)*p{$sig->SIGNAME};\n";
+    echo "  _{$sig->SIGNAME}=(short)*p{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы MRI \n";
   while ($sig = ibase_fetch_object($sig_mri_r))
     {
-    echo "  _{$sig->SIGNAME}=(bool)*p{$sig->SIGNAME};\n";
+    echo "  _{$sig->SIGNAME}=(short)*p{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы MRO \n";
   while ($sig = ibase_fetch_object($sig_mro_r))
     {
-    echo "  _{$sig->SIGNAME}=(bool)*p{$sig->SIGNAME};\n";
+    echo "  _{$sig->SIGNAME}=(short)*p{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы DI \n";
   while ($sig = ibase_fetch_object($sig_di_r))
@@ -311,32 +311,32 @@ echo "	////// сигналы AI \n";
 	echo "	////// сигналы AI \n";
 	while ($sig = ibase_fetch_object($sig_ai_w))
     {
-    echo "  *p{$sig->SIGNAME}=(char)_{$sig->SIGNAME};\n";
+    echo "  *p{$sig->SIGNAME}=(int)_{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы AO \n";
 	while ($sig = ibase_fetch_object($sig_ao_w))
     {
-    echo "  *p{$sig->SIGNAME}=(char)_{$sig->SIGNAME};\n";
+    echo "  *p{$sig->SIGNAME}=(int)_{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы PFA \n";
 	while ($sig = ibase_fetch_object($sig_pfa_w))
     {
-    echo "  *p{$sig->SIGNAME}=(char)_{$sig->SIGNAME};\n";
+    echo "  *p{$sig->SIGNAME}=(int)_{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы KO \n";
 	while ($sig = ibase_fetch_object($sig_ko_w))
     {
-    echo "  *p{$sig->SIGNAME}=(char)_{$sig->SIGNAME};\n";
+    echo "  *p{$sig->SIGNAME}=(int)_{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы MRI \n";
 	while ($sig = ibase_fetch_object($sig_mri_w))
     {
-    echo "  *p{$sig->SIGNAME}=(char)_{$sig->SIGNAME};\n";
+    echo "  *p{$sig->SIGNAME}=(int)_{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы MRO \n";
 	while ($sig = ibase_fetch_object($sig_mro_w))
     {
-    echo "  *p{$sig->SIGNAME}=(char)_{$sig->SIGNAME};\n";
+    echo "  *p{$sig->SIGNAME}=(int)_{$sig->SIGNAME};\n";
 	}
 	echo "	////// сигналы DI \n";
 	while ($sig = ibase_fetch_object($sig_di_w))

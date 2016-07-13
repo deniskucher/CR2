@@ -3,10 +3,9 @@
 $params = "lbd"; 
 include "sintar2007.php";
 ?>
-#ifndef globalsH
-#define globalsH
+#ifndef globalprH
+#define globalprH
 #include "usertype.h"
-
 <?
 global $signals;
 
