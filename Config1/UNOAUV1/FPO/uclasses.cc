@@ -134,31 +134,3 @@ void _TTAKT::_TAKT(bool &PMC, bool &PMG)
   PMG = PRMG;
 }  /*_TTAKT::_TAKT*/
 
-//__________________________________ TZDMSH __________________________________
-
-_TZDMSH::_TZDMSH()
-{
-  
-}
-
-_TZDMSH::~_TZDMSH()
-{
-}
-
-void _TZDMSH::_ZDMSH(const bool SGR, const bool SGM, const bool SYR, const bool SYM,
-  const bool PMC, bool &SG, bool &SY)
-{
-  /*Тело метода*/
-  if (PMC)
-    {
-      SG = SGM;
-      SY = SYM;
-    }
-    else
-    {
-      SG = SGR;
-      SY = SYR;
-    }
-
- return;
-}  /*_TMIG::_MIG*/

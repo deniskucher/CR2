@@ -12,10 +12,6 @@ extern bool _PI12AB09DTS;
 extern bool _PI12AB09TS;
 extern bool _PI12AG03KNMC;
 extern bool _PI12AG05KNMG;
-extern bool _RN17D01NN;
-extern bool _RN17D01SGMN;
-extern bool _RN17D01SGP;
-extern bool _RN17D01SYMN;
-extern bool _RN17D01SYP;
 
 #endif
+

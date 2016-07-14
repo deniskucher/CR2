@@ -82,6 +82,7 @@ public:
   ~_TAVR();
   void _AVR(smallint P, bool PF, smallint PMX1, smallint PMX2, smallint PMN, bool N1RAB, bool N2RAB, bool 
     N3RAB, bool VKL1, bool OTKL1, bool VKL2, bool OTKL2, bool VKL3, bool OTKL3, bool ZDZAK, smallint TVOTKL, bool 
-    N1AO, bool N2AO, bool N3AO, bool &N1A01, bool &N1A02, bool &N2A01, bool &N2A02, bool &N3A01, bool &N3A02);
+    N1AO, bool N2AO, bool N3AO, bool &N1A01, bool &N1A02, bool &N2A01, bool &N2A02, bool &N3A01, bool &N3A02, 
+    bool &PBMX1, bool &PBMX2, bool &PNMN12);
 };
 #endif
