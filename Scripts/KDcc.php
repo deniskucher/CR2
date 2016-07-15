@@ -15,13 +15,24 @@ $cont = substr(basename($lbd,'.ib'),3); //»м€ контроллера
 
 //¬ыбираем сигналы, принадлежащие заданному контроллеру
 
-$qry = "select SC.SigName from SigCont SC, Controller C
-  where C.Name='{$cont}' and SC.NodeID=C.NodeID and (SC.TypeName='AI')
-  order by SC.SigName";
-$sig_ai   =ibase_query($sigdb, $qry);
+ $qra = "select SC.SIGNAME, K.CHANLCOUNT, K.ZAMER, K.LGR from SigCont SC, Controller C, AI K
+  where C.Name='{$cont}' and SC.NodeID=C.NodeID 
+  and SC.SigName=K.Name  order by K.Name "; 
+$sig_ai   =ibase_query($sigdb, $qra);
+$ai  = array();
+$chan  = array();
+$zamer = array();
+$lgr  = array();
 
  while ($sig = ibase_fetch_object($sig_ai))
+    {
        echo "  bool _{$sig->SIGNAME}F_1;\n";
+	$ai[]=$sig->SIGNAME;
+	$chan[]=$sig->CHANLCOUNT;
+	$zamer[]=$sig->ZAMER;
+	$lgr[]=$sig->LGR;
+
+    }
 ?>
 
 _TKD1 *pAI1[KOL_AI1+1]; // +1 worked in case KOL_AI count = 0 
@@ -37,102 +48,197 @@ void Init_KD()
  pAI2[i] = new _TKD2(0); 
  for (i=0;i <= KOL_AI3;i++) 
  pAI3[i] = new _TKD3(0,0,0,0,0); 
-   i=0;
+
 <?
-$qry = "select SC.SigName from SigCont SC, Controller C
-  where C.Name='{$cont}' and SC.NodeID=C.NodeID and (SC.TypeName='PFD')
+ $qry = "select SC.SigName from SigCont SC, Controller C
+  where C.Name='{$cont}' and SC.NodeID=C.NodeID and SC.TypeName='PFD'
   order by SC.SigName";
 $sig_pfd   =ibase_query($sigdb, $qry);
+// 4 массива запретов 
+$zmx  = array();
+$zmn = array();
+$zdv = array();
+$zrk  = array();
+
+ 
  while ($sig = ibase_fetch_object($sig_pfd))
+ {
+     if ($p=strpos($sig->SIGNAME,'ZMX'))
+       $zmx[]   = substr($sig->SIGNAME,0,$p);
+     elseif ($p=strpos($sig->SIGNAME,'ZMN'))
+       $zmn[]   = substr($sig->SIGNAME,0,$p);
+     elseif ($p=strpos($sig->SIGNAME,'ZDV'))
+       $zdv[]   = substr($sig->SIGNAME,0,$p);
+     elseif ($p=strpos($sig->SIGNAME,'RZRK'))
+       $zrk[]   = substr($sig->SIGNAME,0,$p);
+ }	
+ echo "   i=0;\n";
+ $n=count($zmx);
+ $kai=count($ai);
+ 
+ if ($n>0)
+ {
+  $z=0;
+   for ($x = 0; $x < $kai; ++$x) 
+ 
+  {
+      for ($j = 0; $j < $n; ++$j) 
+      { 
+        if ($zmx[$j]==$ai[$x])
+        { echo "  pAI1[i]->pMask_ZMX = &_{$ai[$x]}ZMX;\n";  ++$z;}
+      }
+      echo "   i++;//{$ai[$x]}\n";
+      if ($z>=$n) break;
+    }
+
+ }   
+ echo "   i=0;\n";
+ $n=count($zmn);
+ if ($n>0)
+ {
+  $z=0;
+  for ($x = 0; $x < $kai; ++$x) 
     {
-     if (strpos($sig->SIGNAME,'ZMX') or strpos($sig->SIGNAME, 'ZMN')
-      or strpos($sig->SIGNAME,'ZDV') or strpos($sig->SIGNAME, 'ZRK'))
-       echo "  pAI1[i]->pMask _{$sig->SIGNAME}= &_{$sig->SIGNAME};\n";
+      for ($j = 0; $j < $n; ++$j) 
+       { 
+        if ($zmn[$j]==$ai[$x])
+        {echo "  pAI1[i]->pMask_ZMN = &_{$ai[$x]}ZMN;\n"; ++$z;}
+       }
+      echo "   i++; //{$ai[$x]}\n";
+      if ($z>=$n) break;
+    }
+ }    
+ echo "   i=0;\n";
+
+
+ $n=count($zdv);
+ if ($n>0)
+ {
+  $z=0;
+  for ($x = 0; $x < $kai; ++$x) 
+    {
+      for ($j = 0; $j < $n; ++$j) 
+       { 
+        if ($zdv[$j]==$ai[$x])
+        {echo "  pAI1[i]->pMask_ZDV = &_{$ai[$x]}ZDV;\n"; ++$z;}
+       }
+      echo "   i++;//{$ai[$x]}\n";
+      if ($z>=$n) break;
+    }
+ }
+  echo "   i=0;\n"; 
+ $n=count($zrk);   
+ if ($n>0)
+ {
+  $i = 0;  $z=0;
+  for ($x = 0; $x < $kai; ++$x) 
+    {
+     if ($zamer[$x]!= '<null>' and $lgr[$x]== '2')
+       {
+          for ($j = 0; $j < $n; ++$j) 
+          { 
+           if ($zrk[$j]==$zamer[$x] and $i ==0)
+            {echo "  pAI2[i]->pMask_ZRK = &_{$zamer[$x]}RZRK;\n"; ++$z;} 
+          }   
+          $i++;
+          if ($i >=2)
+           { $i = 0;   echo "   i++;\n"; }  
+       }
+       if ($z>=$n) break;
+     }     
+  echo "   i=0;\n";
+  $i = 0; 
+    for ($x = 0; $x < $kai; ++$x) 
+    {
+      if ($zamer[$x]!= '<null>' and $lgr[$x]== '3')
+       {
+          for ($j = 0; $j < $n; ++$j) 
+          { 
+           if ($zrk[$j]==$zamer[$x] and $i ==0)
+            {echo "  pAI3[i]->pMask_ZRK = &_{$zamer[$x]}RZRK;\n"; ++$z;}
+          }   
+          $i++;
+          if ($i >=3)
+           { $i = 0;   echo "   i++;\n"; }  
+       }
+       if ($z>=$n) break;          
    }
-
+ }        
 ?>
-
+}
 void KD_RUN()
 {
  short i;
  i=0;
  if (Delay_1m<600) Delay_1m++;
 <?
- $qry = "select * from SigCont SC, Controller C, AI K
-  where C.Name='{$cont}' and SC.NodeID=C.NodeID 
-  and SC.SigName=K.Name   and  SC.TypeName='AI' order by K.Name"; 
-
- $sig_ain1 =ibase_query($sigdb, $qry);
- $sig_ain2 =ibase_query($sigdb, $qry);
- $sig_ain3 =ibase_query($sigdb, $qry);
-
- while ($sig = ibase_fetch_object($sig_ain1))
+ 
+ for ($x = 0; $x < $kai; ++$x) 
  {
-  if  ($sig->CHANLCOUNT== '0' or $sig->CHANLCOUNT== '1')
-   echo "  pAI1[i]->_KD1(_{$sig->SIGNAME}, _{$sig->SIGNAME}OKD, _{$sig->SIGNAME}KRS,
-       _{$sig->SIGNAME}K1N, _{$sig->SIGNAME}K1N, _{$sig->SIGNAME}DV, _{$sig->SIGNAME}MN,
-       _{$sig->SIGNAME}MX, _{$sig->SIGNAME}ZZ, _{$sig->SIGNAME}SBRN, _{$sig->SIGNAME}R,
-       _{$sig->SIGNAME}F, _{$sig->SIGNAME}F_1);  i++;\n";
-   elseif  ($sig->CHANLCOUNT== '2')   
-   echo "  pAI1[i]->_KD1(_{$sig->SIGNAME}, _{$sig->SIGNAME}OKD, _{$sig->SIGNAME}KRS,
-       _{$sig->SIGNAME}K1N, _{$sig->SIGNAME}K2N, _{$sig->SIGNAME}DV, _{$sig->SIGNAME}MN,
-       _{$sig->SIGNAME}MX, _{$sig->SIGNAME}ZZ, _{$sig->SIGNAME}SBRN, _{$sig->SIGNAME}R,
-       _{$sig->SIGNAME}F, _{$sig->SIGNAME}F_1);  i++;\n";        
-    
-  }     
+     if  ($chan[$x] == '2')
+   echo "  pAI1[i]->_KD1(_{$ai[$x]}, _{$ai[$x]}OKD, _{$ai[$x]}KRS,
+       _{$ai[$x]}K1N, _{$ai[$x]}K2N, _{$ai[$x]}DV, _{$ai[$x]}MN,
+       _{$ai[$x]}MX, _{$ai[$x]}SBRN, _{$ai[$x]}R, _{$ai[$x]}F,
+       _{$ai[$x]}ZZ, _{$ai[$x]}F_1);  i++;\n"; 
+   else
+   echo "  pAI1[i]->_KD1(_{$ai[$x]}, _{$ai[$x]}OKD, _{$ai[$x]}KRS,
+       _{$ai[$x]}K1N, _{$ai[$x]}K1N, _{$ai[$x]}DV, _{$ai[$x]}MN,
+       _{$ai[$x]}MX, _{$ai[$x]}SBRN, _{$ai[$x]}R, _{$ai[$x]}F,
+       _{$ai[$x]}ZZ, _{$ai[$x]}F_1);  i++;\n"; 
+ }     
 echo " i=0;\n";
 
 $i = 0;
 $zam='<null>';
-  while ($sig = ibase_fetch_object($sig_ain2))
+   for ($x = 0; $x < $kai; ++$x) 
    {
-    if  ($i ==0 and $sig->LGR== '2' and $sig->ZAMER!= '<null>')
+    if  ($i ==0 and $lgr[$x]== '2' and $zamer[$x]!= '<null>')
        {
-        $zam=$sig->ZAMER;
-        $A1=$sig->SIGNAME;
+        $zam=$zamer[$x];
+        $A1=$ai[$x];
         $i++;
        }
 
-    elseif  ($i ==1 and $sig->LGR== '2' and $sig->ZAMER == $zam)
+    elseif  ($i ==1 and $lgr[$x]== '2' and $zamer[$x] == $zam)
        {
-        $A2=$sig->SIGNAME;
-        echo "  pAI1[i]->_KD2(_{$A1}R, _{$A2}R,_{$sig->ZAMER}OKD, _{$sig->ZAMER}KRS,
-       _{$sig->ZAMER}DEL, _{$sig->ZAMER}ZZ, _{$A1}F, _{$A2}F, _{$sig->ZAMER}SBRN,
-       _{$sig->ZAMER}R, _{$sig->ZAMER}F, _{$sig->ZAMER}ZZ);  i++;\n";
+        $A2=$ai[$x];
+        echo "  pAI2[i]->_KD2(_{$A1}R, _{$A2}R,_{$zamer[$x]}OKD, _{$zamer[$x]}KRS,
+       _{$zamer[$x]}DEL, _{$A1}F, _{$A2}F, _{$zamer[$x]}SBRN,
+       _{$zamer[$x]}R, _{$zamer[$x]}F, _{$zamer[$x]}ZZ);  i++;\n";
         $i =0;
         $zam='<null>';
        }
    }
 echo " i=0;\n";
-  
+ 
 $i = 0;
 $zam='<null>';
 
-while ($sig = ibase_fetch_object($sig_ain3))
+ for ($x = 0; $x < $kai; ++$x) 
    {
-         if  ($i ==0 and $sig->LGR== '3' and $sig->ZAMER!= '<null>')
+         if  ($i ==0 and $lgr[$x]== '3' and $zamer[$x]!= '<null>')
        {
-        $zam=$sig->ZAMER;
-        $A1=$sig->SIGNAME;
+        $zam=$zamer[$x];
+        $A1=$ai[$x];
         $i++;
        }
 
-    elseif  ($i ==1 and $sig->LGR== '3' and  $sig->ZAMER == $zam)
+    elseif  ($i ==1 and $lgr[$x]== '3' and  $zamer[$x] == $zam)
        {
-        $A2=$sig->SIGNAME;
+        $A2=$ai[$x];
         $i++;
        }
-    elseif  ($i ==2 and $sig->LGR== '3' and  $sig->ZAMER == $zam)
+    elseif  ($i ==2 and $lgr[$x]== '3' and  $zamer[$x] == $zam)
        {
-        $A3=$sig->SIGNAME;
-       echo "  pAI1[i]->_KD3(_{$A1}R, _{$A2}R, _{$A3}R, _{$sig->ZAMER}OKD, _{$sig->ZAMER}KRS,
-       _{$sig->ZAMER}DEL, _{$sig->ZAMER}ZZ, _{$sig->ZAMER}SBRN, _{$A1}F_1, _{$A2}F_1, _{$A3}F_1,
-       _{$sig->ZAMER}R, _{$sig->ZAMER}F, _{$A1}F, _{$A2}F, _{$A3}F, _{$sig->ZAMER}ZZ,
+        $A3=$ai[$x];
+       echo "  pAI3[i]->_KD3(_{$A1}R, _{$A2}R, _{$A3}R, _{$zamer[$x]}OKD, _{$zamer[$x]}KRS,
+       _{$zamer[$x]}DEL, _{$zamer[$x]}SBRN, _{$A1}F_1, _{$A2}F_1, _{$A3}F_1,
+       _{$zamer[$x]}R, _{$zamer[$x]}F, _{$A1}F, _{$A2}F, _{$A3}F, _{$zamer[$x]}ZZ,
        _{$A1}KRS, _{$A2}KRS, _{$A3}KRS);  i++;\n";
        $i =0; $zam='<null>';
        }
     
-  }  
+  } 
 echo "};\n";
 ?>
  

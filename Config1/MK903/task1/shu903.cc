@@ -7,9 +7,9 @@ void _FILTR()
   smallint _1D = 0;
   smallint _0D = 0;
 
-  _1D = _M255_AF->_AF(_M255SBRN,_M255,_M255TF,_M255AMX);
+  _1D = _M255_AF->_AF(_M255SBRN,_M255R,_M255TF,_M255AMX);
   _M255D = _1D;
-  _0D = _MXXX_AF->_AF(_MXXXSBRN,_M698,_MXXXTF,_MXXXAMX);
+  _0D = _MXXX_AF->_AF(_MXXXSBRN,_MXXXR,_MXXXTF,_MXXXAMX);
   _MXXXD = _0D;
 }
 

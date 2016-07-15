@@ -43,6 +43,7 @@ extern int *pMXXXR;
 extern int *pMXXXTF;
 extern int *pMXXXZZ;
 extern int *pRN17OTKLTV;
+extern char *pHMI_ON;
 extern char *pM255F;
 extern char *pM255K1N;
 extern char *pM255KRS;

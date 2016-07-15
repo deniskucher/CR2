@@ -45,6 +45,7 @@ extern short _MXXXTF;
 extern short _MXXXZZ;
 extern short _RN17OTKLTV;
 	////// сигналы дискретные 
+extern bool _HMI_ON;
 extern bool _M255F;
 extern bool _M255K1N;
 extern bool _M255KRS;
