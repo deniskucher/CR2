@@ -47,10 +47,10 @@
     <SignalDB name="DB_MK_BMV231"/>
     <SignalDB name="DB_KDS_5"/>
     <SignalDB name="DB_BUM_7"/>
-    <SignalDB name="DB_KSK36_1"/>
     <SignalDB name="DB_VV_034_1"/>
     <SignalDB name="DB_VV_034_2"/>
     <SignalDB name="DB_Server"/>
+    <SignalDB name="DB_KSK36_1"/>
   </SignalDBs>
   <Passport>
     <Property name="Станция"/>
